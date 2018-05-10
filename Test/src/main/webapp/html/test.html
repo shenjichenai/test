@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/commons.js"></script>
+</head>
+<body>
+	<div id="aa">
+		<span id="{ee}">{dd}</span> <span>{bb}</span> <span>{ aa }</span>
+	</div>
+	<div id="bb">
+		<item forKey="list"></item>
+	</div>
+	<div id="cc"></div>
+	<div id="dd">
+		<item forKey="list"></item>
+	</div>
+	<script type="text/javascript">
+		var data = {
+			dd : "11",
+			bb : "22",
+			" aa " : "33",
+			ee : "呵呵",
+			list : [ {
+				id : 1,
+				text : '44'
+			}, {
+				id : 2,
+				text : '55'
+			} ],
+			list1 : [ {
+				id : 3,
+				text : 'list1-1'
+			}, {
+				id : 4,
+				text : 'list1-2'
+			} ]
+		};
+
+		createElementByData({
+			el : '#aa',
+			data : data
+		});
+		createElementByData({
+			el : '#bb',
+			data : data,
+			template : '<li id={id}>{text}</li>'
+		});
+		createElementByData({
+			el : '#cc',
+			data : data,
+			template : '<li id={id}>{text}</li>',
+			forKey : 'list1'
+		});
+		createElementByData({
+			el : '#dd',
+			data : data,
+			template : '<li id={id}>{text}</li>',
+			forKey : 'list1'
+		});
+		console.log(document.getElementById("aa").id);
+		var hh="<div id='bbaa'><div>";
+	</script>
+</body>
+</html>
