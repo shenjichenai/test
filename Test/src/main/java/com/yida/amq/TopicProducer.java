@@ -11,16 +11,13 @@ import javax.jms.TextMessage;
 import org.apache.activemq.ActiveMQConnectionFactory;
 
 /**
- * 主题消息-发送（生产）者
- * <p>
- * ClassName: TopicProducer
- * </p>
- * <p>
- * Copyright: (c)2017 JASTAR·WANG,All rights reserved.
- * </p>
+ *********************
+ * 主题发送生产者
  * 
- * @author Jastar·Wang
- * @date 2017-11-15
+ * @author yangke
+ * @version 1.0
+ * @created 2018年5月10日14:13:25
+ ***********************
  */
 public class TopicProducer {
 

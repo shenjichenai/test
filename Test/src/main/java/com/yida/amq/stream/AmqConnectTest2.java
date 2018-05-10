@@ -24,9 +24,11 @@ import com.yida.utils.StreamUtils;
 
 /**
  *********************
- * @author wj
+ * 主题发送接收者
+ * 
+ * @author yangke
  * @version 1.0
- * @created 2018年4月28日 上午11:50:33
+ * @created 2018年5月10日14:14:00
  ***********************
  */
 public class AmqConnectTest2 {

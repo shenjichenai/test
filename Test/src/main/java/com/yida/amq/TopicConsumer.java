@@ -12,16 +12,13 @@ import javax.jms.TextMessage;
 import org.apache.activemq.ActiveMQConnectionFactory;
 
 /**
- * 主题消息-接收（消费）者
- * <p>
- * ClassName: TopicConsumer
- * </p>
- * <p>
- * Copyright: (c)2017 JASTAR·WANG,All rights reserved.
- * </p>
+ *********************
+ * 主题发送接收者
  * 
- * @author Jastar·Wang
- * @date 2017-11-15
+ * @author yangke
+ * @version 1.0
+ * @created 2018年5月10日14:13:44
+ ***********************
  */
 public class TopicConsumer {
 	private ConnectionFactory connectionFactory;
