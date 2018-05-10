@@ -1,5 +1,4 @@
 /**
- * Copyright  2010-2015 四川数码物联网络科技有限责任公司. All Rights Reserved.
  */
 package com.yida.base.stream;
 
@@ -44,7 +43,7 @@ public class StreamTest {
 		return 0;
 	}
 
-	@SuppressWarnings("resource")
+	@SuppressWarnings({ "resource", "unused" })
 	public static int getCharSizeFromFileByStream(String c) {
 		try {
 			FileInputStream in = new FileInputStream(new File("C:\\Users\\0\\Desktop\\AmqConnectTest.java"));
