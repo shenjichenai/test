@@ -18,6 +18,7 @@ import com.yida.design.builder.demo.car.BenzModel;
  ***********************
  */
 public class Director {
+	// 并非线程安全
 	private List<String> sequence = new ArrayList<String>();
 	private BenzBuilder benzBuilder = new BenzBuilder();
 	private BMWBuilder bmwBuilder = new BMWBuilder();
