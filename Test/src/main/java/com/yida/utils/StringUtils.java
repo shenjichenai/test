@@ -10,7 +10,7 @@ import java.util.Random;
  * @created 2018年4月12日 下午2:29:05
  ***********************
  */
-public final class Utils {
+public final class StringUtils {
 	public static void main(String[] args) {
 		/*
 		 * String randomJianHan = getRandomJianHan(5);
@@ -34,6 +34,17 @@ public final class Utils {
 			}
 			System.out.println("n:" + n.toLowerCase());
 		}
+	}
+
+	// 获得指定长度的随机基本字符串
+	public static String getBaseRandString(int maxLength) {
+		String source = "abcdefghijklmnopqrskuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		StringBuffer sb = new StringBuffer();
+		Random rand = new Random();
+		for (int i = 0; i < maxLength; i++) {
+			sb.append(source.charAt(rand.nextInt(source.length())));
+		}
+		return sb.toString();
 	}
 
 	/**
