@@ -1,7 +1,14 @@
 package com.yida.utils;
 
+import java.io.File;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Random;
+
+import com.google.gson.Gson;
 
 /**
  *********************
@@ -16,10 +23,15 @@ public final class StringUtils {
 		 * String randomJianHan = getRandomJianHan(5);
 		 * System.err.println(randomJianHan);
 		 */
-		for (int i = 0; i < 20; i++) {
-			System.err.println(new Random().nextInt(4));
+		List<Map<String, String>> list = new ArrayList<Map<String, String>>();
+		for (int i = 0; i < 10; i++) {
+			String randomJianHan = getRandomJianHan(100);
+			Map<String, String> map = new HashMap<String, String>();
+			map.put("text", randomJianHan);
+			list.add(map);
 		}
-
+		String json = new Gson().toJson(list);
+		FileUtils.writeFile(json, new File("src/main/resources/aaa.json"));
 	}
 
 	public static void cycleCount(int k) {
@@ -73,5 +85,12 @@ public final class StringUtils {
 			ret += str;
 		}
 		return ret;
+	}
+
+	public static boolean isEmpty(String charsetName) {
+		if (charsetName == null || charsetName.isEmpty()) {
+			return true;
+		}
+		return false;
 	}
 }

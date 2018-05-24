@@ -1,3 +1,64 @@
+/* easyui 前端分页 */
+function pagerFilter(data) {
+	if (typeof data.length == 'number' && typeof data.splice == 'function') { // is
+		// array
+		data = {
+			total : data.length,
+			rows : data
+		}
+	}
+	var dg = $(this);
+	var opts = dg.datagrid('options');
+	var pager = dg.datagrid('getPager');
+	pager.pagination({
+		onSelectPage : function(pageNum, pageSize) {
+			opts.pageNumber = pageNum;
+			opts.pageSize = pageSize;
+			pager.pagination('refresh', {
+				pageNumber : pageNum,
+				pageSize : pageSize
+			});
+			dg.datagrid('loadData', data);
+		}
+	});
+	if (!data.originalRows) {
+		data.originalRows = (data.rows);
+	}
+	var start = (opts.pageNumber - 1) * parseInt(opts.pageSize);
+	var end = start + parseInt(opts.pageSize);
+	data.rows = (data.originalRows.slice(start, end));
+	return data;
+}
+/**
+ * easyui下载文件方法
+ * 
+ * @param params
+ */
+function download(params) {
+	var url = params.url;
+	var data = params.data;
+	var $downloadDiv = $('#download-div');
+	var $form = $downloadDiv.find('form');
+	if ($downloadDiv.length == 0) {
+		var $div = $('<div id="download-div" style="display:none"></div>');
+		$form = $('<form method="post"></form>');
+
+		$div.append($form);
+		$('body').eq(0).append($div);
+	}
+	$form.form('submit', {
+		url : url,
+		queryParams : data,
+		success : function(data) {
+			data = utils.str2JSON(data);
+			if (data.state) {
+			} else {
+				$.messager.alert("警告", "<div style='padding-top:12px'>"
+						+ data.note + "</div>", "warning");
+			}
+		}
+	});
+}
 /**
  * 生成随机字符串
  */
