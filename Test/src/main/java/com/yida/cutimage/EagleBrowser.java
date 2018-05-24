@@ -1,6 +1,7 @@
 package com.yida.cutimage;
 
 import java.awt.BorderLayout;
+import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.Graphics2D;
 import java.awt.geom.AffineTransform;
@@ -8,7 +9,6 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Executors;
 
 import javax.imageio.ImageIO;
@@ -18,6 +18,7 @@ import javax.swing.SwingUtilities;
 import javax.swing.SwingWorker;
 
 import chrriis.dj.nativeswing.swtimpl.NativeComponent;
+import chrriis.dj.nativeswing.swtimpl.NativeInterface;
 import chrriis.dj.nativeswing.swtimpl.components.JWebBrowser;
 import chrriis.dj.nativeswing.swtimpl.components.WebBrowserAdapter;
 import chrriis.dj.nativeswing.swtimpl.components.WebBrowserEvent;
@@ -88,14 +89,15 @@ public class EagleBrowser extends JPanel {
 	public static void main1(final List<String> urls, final List<String> paths) {
 		final String title = "";
 		// UIUtils.setPreferredLookAndFeel();
-		// NativeInterface.open();
+		NativeInterface.open();
 		SwingUtilities.invokeLater(new Runnable() {
 			public void run() {
 				for (int i = 0; i < urls.size(); i++) {
 					JFrame frame = new JFrame(title);
 					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 					EagleBrowser eb = new EagleBrowser(urls.get(i));
-					frame.getContentPane().add(eb, BorderLayout.CENTER);
+					Container contentPane = frame.getContentPane();
+					contentPane.add(eb, BorderLayout.CENTER);
 					frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
 					frame.setLocationByPlatform(true);
 					frame.invalidate();
@@ -106,7 +108,7 @@ public class EagleBrowser extends JPanel {
 				}
 			}
 		});
-		// NativeInterface.runEventPump();
+		NativeInterface.runEventPump();
 	}
 
 	public static void swingWorker(final JWebBrowser webBrowser, final String url, final JFrame frame, final int nums,
@@ -126,27 +128,12 @@ public class EagleBrowser extends JPanel {
 			// This will be called if you call publish() from doInBackground()
 			// Can safely update the GUI here.
 			protected void process(List<String> chunks) {
-				try {
-					Thread.sleep(100);
-					CutPictureBySwing.infoLable1.setText("地址:" + url);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				}
 			}
 
 			@Override
 			// This is called when the thread finishes.
 			// Can safely update GUI here.
 			protected void done() {
-
-				try {
-					Integer status = get();
-					CutPictureBySwing.infoLable1.setText("Completed with status: " + status);
-				} catch (InterruptedException e) {
-					e.printStackTrace();
-				} catch (ExecutionException e) {
-					e.printStackTrace();
-				}
 
 			}
 		};
@@ -216,8 +203,7 @@ public class EagleBrowser extends JPanel {
 						}
 						synchronized (pic_nums) {
 							pic_nums = pic_nums + 1;
-							System.out.println("已完成：" + pic_nums);
-							CutPictureBySwing.infoLable1.setText("已完成：" + pic_nums + "张");
+							System.out.println("图片路径：" + path);
 						}
 					}
 				}
