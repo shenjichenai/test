@@ -1,4 +1,4 @@
-package com.yida.cutimage;
+package com.yida.utils;
 
 import java.awt.BorderLayout;
 import java.awt.Container;
@@ -9,7 +9,6 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
-import java.util.concurrent.Executors;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
@@ -25,14 +24,14 @@ import chrriis.dj.nativeswing.swtimpl.components.WebBrowserEvent;
 
 /**
  *********************
- * 主要截图类
+ * 主要截图类 swt使用微博： https://blog.csdn.net/wyp_810618/article/details/2251248
  * 
  * @author yangke
  * @version 1.0
  * @created 2018年5月24日 下午4:09:06
  ***********************
  */
-public class EagleBrowser extends JPanel {
+public class CutPictureUtils extends JPanel {
 	/** 
 	 * 
 	 */
@@ -40,12 +39,14 @@ public class EagleBrowser extends JPanel {
 
 	public static Integer pic_nums = 0;// 记录已完成数量
 
+	private static List<String> paths1;
+
 	@SuppressWarnings("unused")
 	private String url;
 
 	JWebBrowser webBrowser;
 
-	public EagleBrowser(String url) {
+	public CutPictureUtils(String url) {
 		super(new BorderLayout());
 		this.url = url;
 		JPanel webBrowserPanel;
@@ -68,6 +69,7 @@ public class EagleBrowser extends JPanel {
 	final static StringBuffer jsDimension;
 
 	static {
+		System.out.println(LS);
 		jsDimension = new StringBuffer();
 		jsDimension.append("var width = 0;").append(LS);
 		jsDimension.append("var height = 0;").append(LS);
@@ -86,7 +88,7 @@ public class EagleBrowser extends JPanel {
 		jsDimension.append("return width + ':' + height;");
 	}
 
-	public static void main1(final List<String> urls, final List<String> paths) {
+	public static void cutPicture(final List<String> urls, final List<String> paths) {
 		final String title = "";
 		// UIUtils.setPreferredLookAndFeel();
 		NativeInterface.open();
@@ -95,7 +97,7 @@ public class EagleBrowser extends JPanel {
 				for (int i = 0; i < urls.size(); i++) {
 					JFrame frame = new JFrame(title);
 					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-					EagleBrowser eb = new EagleBrowser(urls.get(i));
+					CutPictureUtils eb = new CutPictureUtils(urls.get(i));
 					Container contentPane = frame.getContentPane();
 					contentPane.add(eb, BorderLayout.CENTER);
 					frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -104,17 +106,19 @@ public class EagleBrowser extends JPanel {
 					frame.pack();
 					frame.setVisible(false);
 
+					pic_nums = urls.size();
+					paths1 = paths;
 					swingWorker(eb.webBrowser, urls.get(i), frame, urls.size(), paths.get(i));
 				}
 			}
 		});
-		// NativeInterface.runEventPump();
 	}
 
 	public static void swingWorker(final JWebBrowser webBrowser, final String url, final JFrame frame, final int nums,
 			final String path) {
 
-		sun.awt.AppContext.getAppContext().put(SwingWorker.class, Executors.newFixedThreadPool(5));
+		// sun.awt.AppContext.getAppContext().put(SwingWorker.class,
+		// Executors.newFixedThreadPool(5));
 
 		SwingWorker<Integer, String> sw = new SwingWorker<Integer, String>() {
 
@@ -203,14 +207,25 @@ public class EagleBrowser extends JPanel {
 							frame.dispose();
 						}
 						synchronized (pic_nums) {
-							pic_nums = pic_nums + 1;
-							System.out.println("图片路径：" + path);
-							System.out.println("第" + pic_nums + "张图,存在：" + new File(path).exists());
+							pic_nums -= 1;
+							// 生成所有图片后执行其他操作
+							if (pic_nums == 0) {
+								exportWord();
+							}
 						}
 					}
 				}
 			}
+
 		});
 
 	}
+
+	private static void exportWord() {
+		// 执行额外的操作
+		for (String path : paths1) {
+			System.err.println(path);
+		}
+	}
+
 }

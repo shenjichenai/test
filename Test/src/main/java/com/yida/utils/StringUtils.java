@@ -87,10 +87,30 @@ public final class StringUtils {
 		return ret;
 	}
 
+	/**
+	 * 判断是否为空
+	 * 
+	 * @param charsetName
+	 * @return
+	 */
 	public static boolean isEmpty(String charsetName) {
 		if (charsetName == null || charsetName.isEmpty()) {
 			return true;
 		}
 		return false;
+	}
+
+	/**
+	 * 转义正则特殊字符 （$()*+.[]?\^{} \\需要第一个替换，否则replace方法替换时会有逻辑bug
+	 */
+	public static String String2RegExp(String str) {
+		if (StringUtils.isEmpty(str)) {
+			return str;
+		}
+
+		return str.replace("\\", "\\\\").replace("*", "\\*").replace("+", "\\+").replace("|", "\\|").replace("{", "\\{")
+				.replace("}", "\\}").replace("(", "\\(").replace(")", "\\)").replace("^", "\\^").replace("$", "\\$")
+				.replace("[", "\\[").replace("]", "\\]").replace("?", "\\?").replace(",", "\\,").replace(".", "\\.")
+				.replace("&", "\\&");
 	}
 }
