@@ -17,8 +17,6 @@ public class StartListener implements ServletContextListener {
 	private static final Logger LOG = LoggerFactory.getLogger(StartListener.class);
 
 	public void contextInitialized(ServletContextEvent sce) {
-		LOG.info("启动短信发布平台。。。");
-		System.out.println("*************************启动短信发布平台***********************************");
 		LOG.info("初始化配置信息。。。");
 		loadConfig(sce);
 
@@ -29,8 +27,7 @@ public class StartListener implements ServletContextListener {
 	}
 
 	public void contextDestroyed(ServletContextEvent sce) {
-		LOG.info("短信发布平台正在退出。。。");
-		System.out.println("*************************关闭短信发布平台************************************");
+		System.out.println("*************************关闭平台************************************");
 	}
 
 }
