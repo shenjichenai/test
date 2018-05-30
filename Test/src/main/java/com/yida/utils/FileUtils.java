@@ -45,13 +45,13 @@ public final class FileUtils {
 			osw = new OutputStreamWriter(new FileOutputStream(file), charsetName);
 			osw.write(content);
 			osw.flush();
-		} catch (IOException arg11) {
-			throw new RuntimeException(arg11);
+		} catch (IOException e) {
+			throw new RuntimeException(e);
 		} finally {
 			if (osw != null) {
 				try {
 					osw.close();
-				} catch (IOException arg10) {
+				} catch (IOException e) {
 					;
 				}
 			}
