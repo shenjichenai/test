@@ -11,7 +11,6 @@ public class ListUtils {
 	public static List<List<Object>> splitList(int groupCount, List<Object> list) {
 
 		int avgCount = list.size() / groupCount;
-		int surplus = list.size() % groupCount;
 
 		List<Object> smallList = new ArrayList<>();
 		List<List<Object>> splitList = new ArrayList<>();
@@ -23,13 +22,12 @@ public class ListUtils {
 				smallList = new ArrayList<>();
 			}
 		}
-		if (surplus != 0) {
-			int maxIndex = splitList.size() - 1;
-			List<Object> moreData = splitList.get(maxIndex);
+		if (groupCount < splitList.size()) {
+			List<Object> moreData = splitList.get(groupCount);
 			for (int i = 0; i < moreData.size(); i++) {
 				splitList.get(i).add(moreData.get(i));
 			}
-			splitList.remove(maxIndex);
+			splitList.remove(groupCount);
 		}
 		return splitList;
 	}
