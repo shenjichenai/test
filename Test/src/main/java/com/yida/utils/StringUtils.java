@@ -103,7 +103,7 @@ public final class StringUtils {
 	/**
 	 * 转义正则特殊字符 （$()*+.[]?\^{} \\需要第一个替换，否则replace方法替换时会有逻辑bug
 	 */
-	public static String String2RegExp(String str) {
+	public static String string2RegExp(String str) {
 		if (StringUtils.isEmpty(str)) {
 			return str;
 		}

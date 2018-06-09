@@ -14,6 +14,7 @@ import com.yida.design.abstractfactory.abs.AbstractBlackHuman;
  */
 public class FemaleBlackHuman extends AbstractBlackHuman {
 
+	@Override
 	public void getSex() {
 		System.out.println("黑人女性");
 	}

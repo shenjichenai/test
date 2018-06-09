@@ -9,7 +9,7 @@ package com.yida.design.builder.demo.car;
  * @created 2018年5月10日 下午5:41:55
  ***********************
  */
-public class BMWModel extends CarModel {
+public class BMWModel extends AbstractCarModel {
 
 	@Override
 	protected void start() {

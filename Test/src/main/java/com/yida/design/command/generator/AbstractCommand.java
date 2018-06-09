@@ -9,7 +9,7 @@ package com.yida.design.command.generator;
  * @created 2018年5月12日 上午10:56:18
  ***********************
  */
-public abstract class Command {
+public abstract class AbstractCommand {
 	// 每个命令类必须有一个执行命令的方法
 	public abstract void execute();
 }

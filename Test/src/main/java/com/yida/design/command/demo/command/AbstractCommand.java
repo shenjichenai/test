@@ -13,7 +13,7 @@ import com.yida.design.command.demo.group.RequirementGroup;
  * @created 2018年5月12日 上午10:23:41
  ***********************
  */
-public abstract class Command {
+public abstract class AbstractCommand {
 	// 定义好3个组
 	protected RequirementGroup requirementGroup = new RequirementGroup();
 	protected CodeGroup codeGroup = new CodeGroup();

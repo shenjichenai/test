@@ -1,6 +1,6 @@
 package com.yida.design.decorator;
 
-import com.yida.design.decorator.abs.SchoolReport;
+import com.yida.design.decorator.abs.AbstractSchoolReport;
 
 /**
  *********************
@@ -12,7 +12,7 @@ import com.yida.design.decorator.abs.SchoolReport;
 public class Father {
 	public static void main(String[] args) {
 		// 把成绩单拿过来
-		SchoolReport sr;
+		AbstractSchoolReport sr;
 		// 原装的成绩单
 		sr = new FouthGradeSchoolReport();
 		// 加了最高分说明的成绩单

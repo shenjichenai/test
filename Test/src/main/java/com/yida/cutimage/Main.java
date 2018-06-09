@@ -8,10 +8,10 @@ import java.util.concurrent.CountDownLatch;
 public class Main {
 	public static void main(String[] args) throws InterruptedException {
 
-		int N = 10;
-		CountDownLatch doneSignal = new CountDownLatch(N);
+		int n = 10;
+		CountDownLatch doneSignal = new CountDownLatch(n);
 
-		for (int i = 0; i < N; ++i) { // create and start threads
+		for (int i = 0; i < n; ++i) { // create and start threads
 			new Thread(new Worker(doneSignal)).start();
 			doneSignal.countDown();
 		}
@@ -28,6 +28,7 @@ class Worker implements Runnable {
 		this.doneSignal = doneSignal;
 	}
 
+	@Override
 	public void run() {
 		try {
 			List<String> urls = new ArrayList<>();

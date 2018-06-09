@@ -9,11 +9,11 @@ package com.yida.design.command.generator;
  * @created 2018年5月12日 上午10:58:33
  ***********************
  */
-public class ConcreteCommand1 extends Command {
+public class ConcreteCommand1 extends AbstractCommand {
 
-	private Receiver receiver;
+	private AbstractReceiver receiver;
 
-	public ConcreteCommand1(Receiver receiver) {
+	public ConcreteCommand1(AbstractReceiver receiver) {
 		this.receiver = receiver;
 	}
 

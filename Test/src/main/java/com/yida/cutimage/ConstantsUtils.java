@@ -49,8 +49,9 @@ public class ConstantsUtils {
 		List<Element> elementList = root.elements();
 
 		// 遍历所有子节点
-		for (Element e : elementList)
+		for (Element e : elementList) {
 			map.put(e.getName(), e.getText());
+		}
 
 		// 获取配置文件中的值
 		IMG_WRITE_PATH = map.get("IMG_WRITE_PATH");

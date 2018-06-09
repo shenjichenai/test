@@ -7,7 +7,7 @@ package com.yida.design.decorator.abs;
  * @created 2018年3月19日 下午5:39:55
  ***********************
  */
-public abstract class SchoolReport {
+public abstract class AbstractSchoolReport {
 	// 成绩单主要展示的就是你的成绩情况
 	public abstract void report();
 

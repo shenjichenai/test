@@ -82,6 +82,7 @@ public class CutPictureBySwing extends JFrame implements ActionListener {
 		infoLable1.setBounds(100, 125, 300, 30);
 	}
 
+	@Override
 	public void actionPerformed(ActionEvent e) {
 		JButton jb = (JButton) e.getSource();
 		/*
@@ -104,6 +105,7 @@ public class CutPictureBySwing extends JFrame implements ActionListener {
 	 * 
 	 * @param draftPublishedList
 	 */
+	@SuppressWarnings("unused")
 	private void updateShortCutImgURL(String draftId) throws Exception {
 		Connection conn = DBUtil.getConnection();
 		String sql = "select id,url from tb_draft_published_list where draft_id = " + Integer.parseInt(draftId)

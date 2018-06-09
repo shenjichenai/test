@@ -9,7 +9,7 @@ package com.yida.design.command.generator;
  * @created 2018年5月12日 上午10:53:51
  ***********************
  */
-public class ConcreteReciver1 extends Receiver {
+public class ConcreteReciver1 extends AbstractReceiver {
 
 	@Override
 	public void doSomething() {

@@ -1,7 +1,7 @@
 package com.yida.design.decorator;
 
-import com.yida.design.decorator.abs.Decorator;
-import com.yida.design.decorator.abs.SchoolReport;
+import com.yida.design.decorator.abs.AbstractDecorator;
+import com.yida.design.decorator.abs.AbstractSchoolReport;
 
 /**
  *********************
@@ -10,9 +10,9 @@ import com.yida.design.decorator.abs.SchoolReport;
  * @created 2018年3月31日 下午2:37:39
  ***********************
  */
-public class HighScoreDecorator extends Decorator {
+public class HighScoreDecorator extends AbstractDecorator {
 
-	public HighScoreDecorator(SchoolReport sr) {
+	public HighScoreDecorator(AbstractSchoolReport sr) {
 		super(sr);
 	}
 

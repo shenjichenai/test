@@ -11,7 +11,7 @@ package com.yida.design.builder.generator;
  */
 public class Director {
 
-	private Builder builder = new ConcreteBuilder();
+	private AbstractBuilder builder = new ConcreteBuilder();
 
 	public Product getAProduct() {
 		// 设置产品内部生产逻辑

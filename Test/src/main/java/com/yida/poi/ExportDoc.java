@@ -114,10 +114,10 @@ public class ExportDoc {
 							List<XWPFTableCell> tableCells = xwpfTableRow.getTableCells();
 							int colCount = tableCells.size();
 
-							CTTcPr[] tc_Prs = new CTTcPr[colCount];
+							CTTcPr[] tcPrs = new CTTcPr[colCount];
 							String[] colNames = new String[colCount];
-							CTPPr[] p_Prs = new CTPPr[colCount];
-							CTRPr[] r_Prs = new CTRPr[colCount];
+							CTPPr[] pPrs = new CTPPr[colCount];
+							CTRPr[] rPrs = new CTRPr[colCount];
 
 							for (int colIndex = 0; colIndex < colCount; colIndex++) {
 
@@ -129,16 +129,16 @@ public class ExportDoc {
 								if (mCol.find()) {
 									String colName = mCol.group(1).trim();
 
-									tc_Prs[colIndex] = xwpfTableCell.getCTTc().getTcPr();
+									tcPrs[colIndex] = xwpfTableCell.getCTTc().getTcPr();
 									colNames[colIndex] = colName;
-									p_Prs[colIndex] = paragraph.getCTP().getPPr();
+									pPrs[colIndex] = paragraph.getCTP().getPPr();
 									XWPFRun xwpfRun = paragraph.getRuns().get(0);
-									r_Prs[colIndex] = xwpfRun.getCTR().getRPr();
+									rPrs[colIndex] = xwpfRun.getCTR().getRPr();
 								}
 							}
 							for (int i = 0; i < records.size(); i++) {
 								Map<String, Object> map1 = records.get(i);
-								XWPFTableRow new_row = table.createRow();
+								XWPFTableRow newRow = table.createRow();
 								for (int j = 0; j < colNames.length; j++) {
 									String key = colNames[j];
 									if (StringUtils.isEmpty(key)) {
@@ -146,14 +146,14 @@ public class ExportDoc {
 									}
 									String value = map1.get(key) == null ? "" : map1.get(key).toString();
 
-									XWPFTableCell cell = new_row.getCell(j);
-									cell.getCTTc().setTcPr(tc_Prs[j]);
+									XWPFTableCell cell = newRow.getCell(j);
+									cell.getCTTc().setTcPr(tcPrs[j]);
 
-									XWPFParagraph new_paragraph = cell.getParagraphs().get(0);
-									new_paragraph.getCTP().setPPr(p_Prs[j]);
+									XWPFParagraph newParagraph = cell.getParagraphs().get(0);
+									newParagraph.getCTP().setPPr(pPrs[j]);
 
-									XWPFRun createRun = new_paragraph.createRun();
-									createRun.getCTR().setRPr(r_Prs[j]);
+									XWPFRun createRun = newParagraph.createRun();
+									createRun.getCTR().setRPr(rPrs[j]);
 									createRun.setText(value);
 								}
 							}
@@ -191,7 +191,7 @@ public class ExportDoc {
 						XWPFRun run = runs.get(i);
 						run.setText("", 0);
 					}
-					String regex = StringUtils.String2RegExp(replaceKey);
+					String regex = StringUtils.string2RegExp(replaceKey);
 					String[] split = str.replaceAll(regex, "," + regex + ",").split(",");
 					for (int i = 0; i < split.length; i++) {
 						String string = split[i];
@@ -222,29 +222,29 @@ public class ExportDoc {
 	private int getImgFormat(String imgFile) {
 		int format;
 
-		if (imgFile.endsWith(".emf"))
+		if (imgFile.endsWith(".emf")) {
 			format = XWPFDocument.PICTURE_TYPE_EMF;
-		else if (imgFile.endsWith(".wmf"))
+		} else if (imgFile.endsWith(".wmf")) {
 			format = XWPFDocument.PICTURE_TYPE_WMF;
-		else if (imgFile.endsWith(".pict"))
+		} else if (imgFile.endsWith(".pict")) {
 			format = XWPFDocument.PICTURE_TYPE_PICT;
-		else if (imgFile.endsWith(".jpeg") || imgFile.endsWith(".jpg"))
+		} else if (imgFile.endsWith(".jpeg") || imgFile.endsWith(".jpg")) {
 			format = XWPFDocument.PICTURE_TYPE_JPEG;
-		else if (imgFile.endsWith(".png"))
+		} else if (imgFile.endsWith(".png")) {
 			format = XWPFDocument.PICTURE_TYPE_PNG;
-		else if (imgFile.endsWith(".dib"))
+		} else if (imgFile.endsWith(".dib")) {
 			format = XWPFDocument.PICTURE_TYPE_DIB;
-		else if (imgFile.endsWith(".gif"))
+		} else if (imgFile.endsWith(".gif")) {
 			format = XWPFDocument.PICTURE_TYPE_GIF;
-		else if (imgFile.endsWith(".tiff"))
+		} else if (imgFile.endsWith(".tiff")) {
 			format = XWPFDocument.PICTURE_TYPE_TIFF;
-		else if (imgFile.endsWith(".eps"))
+		} else if (imgFile.endsWith(".eps")) {
 			format = XWPFDocument.PICTURE_TYPE_EPS;
-		else if (imgFile.endsWith(".bmp"))
+		} else if (imgFile.endsWith(".bmp")) {
 			format = XWPFDocument.PICTURE_TYPE_BMP;
-		else if (imgFile.endsWith(".wpg"))
+		} else if (imgFile.endsWith(".wpg")) {
 			format = XWPFDocument.PICTURE_TYPE_WPG;
-		else {
+		} else {
 			throw new RuntimeException("不支持的图片格式。");
 		}
 		return format;
@@ -276,7 +276,7 @@ public class ExportDoc {
 						XWPFRun run = runs.get(i);
 						run.setText("", 0);
 					}
-					String regex = StringUtils.String2RegExp(replaceKey);
+					String regex = StringUtils.string2RegExp(replaceKey);
 					String replaceAll = sb.toString().replaceAll(regex, entry.getValue().toString());
 					if (runs.size() > 0) {
 						runs.get(0).setText(replaceAll);

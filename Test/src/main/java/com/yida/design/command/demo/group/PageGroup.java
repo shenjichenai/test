@@ -9,7 +9,7 @@ package com.yida.design.command.demo.group;
  * @created 2018年5月12日 上午10:02:12
  ***********************
  */
-public class PageGroup extends Group {
+public class PageGroup extends AbstractGroup {
 
 	@Override
 	public void find() {

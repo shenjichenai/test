@@ -34,9 +34,9 @@ public class Hello {
 				extension = s.substring(i + 1).toLowerCase();
 			}
 			if (extension != null) {
-				if (extension.equals("tiff") || extension.equals("tif") || extension.equals("gif")
-						|| extension.equals("jpeg") || extension.equals("jpg") || extension.equals("png")
-						|| extension.equals("bmp")) {
+				if ("tiff".equals(extension) || "tif".equals(extension) || "gif".equals(extension)
+						|| "jpeg".equals(extension) || "jpg".equals(extension) || "png".equals(extension)
+						|| "bmp".equals(extension)) {
 					return true;
 				} else {
 					return false;

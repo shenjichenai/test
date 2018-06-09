@@ -16,11 +16,11 @@ import org.slf4j.LoggerFactory;
  ***********************
  */
 public class HelloJob implements Job {
-	private static Logger _log = LoggerFactory.getLogger(HelloJob.class);
+	private static Logger log = LoggerFactory.getLogger(HelloJob.class);
 
 	@Override
 	public void execute(JobExecutionContext context) throws JobExecutionException {
-		_log.info("Hello World! - " + new Date());
+		log.info("Hello World! - " + new Date());
 
 	}
 

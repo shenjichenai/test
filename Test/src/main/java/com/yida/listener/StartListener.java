@@ -16,6 +16,7 @@ import org.slf4j.LoggerFactory;
 public class StartListener implements ServletContextListener {
 	private static final Logger LOG = LoggerFactory.getLogger(StartListener.class);
 
+	@Override
 	public void contextInitialized(ServletContextEvent sce) {
 		LOG.info("初始化配置信息。。。");
 		loadConfig(sce);
@@ -26,6 +27,7 @@ public class StartListener implements ServletContextListener {
 		System.out.println(111);
 	}
 
+	@Override
 	public void contextDestroyed(ServletContextEvent sce) {
 		System.out.println("*************************关闭平台************************************");
 	}

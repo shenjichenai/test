@@ -9,7 +9,7 @@ package com.yida.design.command.demo.group;
  * @created 2018年5月12日 上午9:58:21
  ***********************
  */
-public class RequirementGroup extends Group {
+public class RequirementGroup extends AbstractGroup {
 
 	@Override
 	public void find() {

@@ -9,7 +9,7 @@ package com.yida.design.command.generator;
  * @created 2018年5月12日 上午10:51:04
  ***********************
  */
-public abstract class Receiver {
+public abstract class AbstractReceiver {
 	// 定义每个接收者都必须完成的业务
 	public abstract void doSomething();
 }

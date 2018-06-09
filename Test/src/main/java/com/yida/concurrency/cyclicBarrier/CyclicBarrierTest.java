@@ -33,7 +33,7 @@ public class CyclicBarrierTest {
 		@Override
 		public void run() {
 			try {
-				Thread.sleep(200);
+				// Thread.sleep(200);
 				map.put("玩家" + id, "正在玩第一关...");
 				System.out.println("玩家" + id + "正在玩第一关...");
 				cyclicBarrier.await();
@@ -62,5 +62,10 @@ public class CyclicBarrierTest {
 		}
 		String json = new Gson().toJson(map);
 		System.out.println(json);
+	}
+
+	public static void main(String[] args) {
+		String a = "aa";
+		"aa".equals(a);
 	}
 }

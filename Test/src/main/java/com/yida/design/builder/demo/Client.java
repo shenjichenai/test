@@ -1,7 +1,10 @@
 package com.yida.design.builder.demo;
 
 import java.util.Random;
+import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 import com.yida.design.builder.demo.car.BMWModel;
 import com.yida.design.builder.demo.car.BenzModel;
@@ -22,8 +25,11 @@ public class Client {
 		CountDownLatch countDownLatch = new CountDownLatch(count);
 		Director director = new Director();
 
+		ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor(2, 3, 1, TimeUnit.SECONDS,
+				new ArrayBlockingQueue<>(2), new ThreadPoolExecutor.DiscardPolicy());
+
 		for (int i = 0; i < count; i++) {
-			new Thread(new Worker(countDownLatch, director)).start();
+			threadPoolExecutor.execute(new Worker(countDownLatch, director));
 		}
 		try {
 			countDownLatch.await();
@@ -43,6 +49,7 @@ class Worker implements Runnable {
 		this.director = director;
 	}
 
+	@Override
 	public void run() {
 		Random random = new Random();
 		int nextInt = random.nextInt(2);

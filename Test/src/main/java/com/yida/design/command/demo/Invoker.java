@@ -1,6 +1,6 @@
 package com.yida.design.command.demo;
 
-import com.yida.design.command.demo.command.Command;
+import com.yida.design.command.demo.command.AbstractCommand;
 
 /**
  *********************
@@ -13,10 +13,10 @@ import com.yida.design.command.demo.command.Command;
  */
 public class Invoker {
 	// 什么命令
-	private Command command;
+	private AbstractCommand command;
 
 	// 设置命令
-	public void setCommand(Command command) {
+	public void setCommand(AbstractCommand command) {
 		this.command = command;
 	}
 

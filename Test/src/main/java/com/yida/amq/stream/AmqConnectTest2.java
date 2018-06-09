@@ -46,6 +46,7 @@ public class AmqConnectTest2 {
 
 			createConsumer.setMessageListener(new MessageListener() {
 
+				@Override
 				public void onMessage(Message message) {
 					System.err.println("fffffff");
 					System.err.println(message.getClass().getName());

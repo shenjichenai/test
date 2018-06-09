@@ -70,6 +70,7 @@ public class TopicConsumer {
 		try {
 			messageConsumer.setMessageListener(new MessageListener() {
 
+				@Override
 				public void onMessage(Message message) {
 					if (message instanceof TextMessage) {
 						try {

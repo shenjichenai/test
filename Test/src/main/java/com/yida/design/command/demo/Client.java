@@ -1,6 +1,6 @@
 package com.yida.design.command.demo;
 
-import com.yida.design.command.demo.command.Command;
+import com.yida.design.command.demo.command.AbstractCommand;
 import com.yida.design.command.demo.command.DeletePageCommand;
 
 /**
@@ -18,7 +18,7 @@ public class Client {
 		// 增加需求的命令
 		// Command command = new AddRequirementCommand();
 		// 删除页面的命令
-		Command command = new DeletePageCommand();
+		AbstractCommand command = new DeletePageCommand();
 		yk.setCommand(command);
 		yk.action();
 	}

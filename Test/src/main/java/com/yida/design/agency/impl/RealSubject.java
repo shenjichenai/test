@@ -11,6 +11,7 @@ import com.yida.design.agency.Subject;
  */
 public class RealSubject implements Subject {
 
+	@Override
 	public void request() {
 
 	}

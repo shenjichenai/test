@@ -1,6 +1,6 @@
 package com.yida.design.decorator;
 
-import com.yida.design.decorator.abs.SchoolReport;
+import com.yida.design.decorator.abs.AbstractSchoolReport;
 
 /**
  *********************
@@ -9,7 +9,7 @@ import com.yida.design.decorator.abs.SchoolReport;
  * @created 2018年3月30日 下午5:50:19
  ***********************
  */
-public class FouthGradeSchoolReport extends SchoolReport {
+public class FouthGradeSchoolReport extends AbstractSchoolReport {
 
 	@Override
 	public void report() {

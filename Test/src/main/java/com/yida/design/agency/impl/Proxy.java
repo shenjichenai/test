@@ -18,14 +18,15 @@ public class Proxy implements Subject {
 		this.subject = new Proxy();
 	}
 
-	public Proxy(Subject _subject) {
-		this.subject = _subject;
+	public Proxy(Subject subject) {
+		this.subject = subject;
 	}
 
 	// 通过构造函数传递代理者
 	public Proxy(Object... objects) {
 	}
 
+	@Override
 	public void request() {
 		this.before();
 		this.subject.request();

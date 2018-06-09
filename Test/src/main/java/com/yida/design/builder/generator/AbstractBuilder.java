@@ -9,7 +9,7 @@ package com.yida.design.builder.generator;
  * @created 2018年5月10日 下午5:04:44
  ***********************
  */
-public abstract class Builder {
+public abstract class AbstractBuilder {
 	// 设置产品的不同部分，以满足产品的不同需求
 	public abstract void setPart();
 

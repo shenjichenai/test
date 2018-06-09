@@ -2,8 +2,8 @@ package com.yida.design.builder.demo.builder;
 
 import java.util.List;
 
+import com.yida.design.builder.demo.car.AbstractCarModel;
 import com.yida.design.builder.demo.car.BMWModel;
-import com.yida.design.builder.demo.car.CarModel;
 
 /**
  *********************
@@ -14,7 +14,7 @@ import com.yida.design.builder.demo.car.CarModel;
  * @created 2018年5月10日 下午5:48:04
  ***********************
  */
-public class BMWBuilder extends CarBuilder {
+public class BMWBuilder extends AbstractCarBuilder {
 
 	private BMWModel bmwModel = new BMWModel();
 
@@ -24,7 +24,7 @@ public class BMWBuilder extends CarBuilder {
 	}
 
 	@Override
-	public CarModel getCarModel() {
+	public AbstractCarModel getCarModel() {
 		return this.bmwModel;
 	}
 

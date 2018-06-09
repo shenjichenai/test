@@ -16,7 +16,7 @@ public class Client {
 		// 定义接收者
 		ConcreteReciver1 receiver = new ConcreteReciver1();
 		// 定义接收者命令
-		Command command = new ConcreteCommand1(receiver);
+		AbstractCommand command = new ConcreteCommand1(receiver);
 		// 把命令交给调用者去执行
 		invoker.setCommand(command);
 		invoker.action();

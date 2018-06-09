@@ -9,7 +9,7 @@ package com.yida.design.command.demo.command;
  * @created 2018年5月12日 上午10:32:20
  ***********************
  */
-public class DeletePageCommand extends Command {
+public class DeletePageCommand extends AbstractCommand {
 
 	@Override
 	public void execute() {

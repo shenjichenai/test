@@ -12,7 +12,7 @@ import java.util.List;
  * @created 2018年5月10日 下午5:26:44
  ***********************
  */
-public abstract class CarModel {
+public abstract class AbstractCarModel {
 	// 基本方法执行顺序
 	private List<String> sequence = new ArrayList<String>();
 

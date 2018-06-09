@@ -21,7 +21,7 @@ import org.slf4j.LoggerFactory;
  ***********************
  */
 public class Test {
-	private static Logger _log = LoggerFactory.getLogger(Test.class);
+	private static Logger log = LoggerFactory.getLogger(Test.class);
 
 	public static void main(String[] args) {
 		try {
@@ -49,8 +49,8 @@ public class Test {
 
 			// and start it off
 			scheduler.start();
-			_log.info("启动时间 ： " + new Date());
-			_log.info("触发时间：" + t.getNextFireTime());
+			log.info("启动时间 ： " + new Date());
+			log.info("触发时间：" + t.getNextFireTime());
 			// scheduler.shutdown();
 
 		} catch (SchedulerException se) {

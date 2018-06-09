@@ -16,6 +16,7 @@ public class OuterUser implements IOuterUser {
 	/*
 	 * 用户的基本信息
 	 */
+	@Override
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public Map getUserBaseInfo() {
 		HashMap baseInfoMap = new HashMap();
@@ -27,6 +28,7 @@ public class OuterUser implements IOuterUser {
 	/*
 	 * 员工的家庭信息
 	 */
+	@Override
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public Map getUserHomeInfo() {
 		HashMap homeInfo = new HashMap();
@@ -38,6 +40,7 @@ public class OuterUser implements IOuterUser {
 	/*
 	 * 员工的工作信息，比如，职位等
 	 */
+	@Override
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public Map getUserOfficeInfo() {
 		HashMap officeInfo = new HashMap();

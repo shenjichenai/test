@@ -9,7 +9,9 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
-import java.util.concurrent.Executors;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
@@ -65,25 +67,25 @@ public class EagleBrowser extends JPanel {
 	// 文件分割符
 	final static public String FS = System.getProperty("file.separator", "\\");
 	// 以javascript脚本获得网页全屏后大小
-	final static StringBuffer jsDimension;
+	final static StringBuffer JS_DIMENSION;
 
 	static {
-		jsDimension = new StringBuffer();
-		jsDimension.append("var width = 0;").append(LS);
-		jsDimension.append("var height = 0;").append(LS);
-		jsDimension.append("if(document.documentElement) {").append(LS);
-		jsDimension.append("  width = Math.max(width, document.documentElement.scrollWidth);").append(LS);
-		jsDimension.append("  height = Math.max(height, document.documentElement.scrollHeight);").append(LS);
-		jsDimension.append("}").append(LS);
-		jsDimension.append("if(self.innerWidth) {").append(LS);
-		jsDimension.append("  width = Math.max(width, self.innerWidth);").append(LS);
-		jsDimension.append("  height = Math.max(height, self.innerHeight);").append(LS);
-		jsDimension.append("}").append(LS);
-		jsDimension.append("if(document.body.scrollWidth) {").append(LS);
-		jsDimension.append("  width = Math.max(width, document.body.scrollWidth);").append(LS);
-		jsDimension.append("  height = Math.max(height, document.body.scrollHeight);").append(LS);
-		jsDimension.append("}").append(LS);
-		jsDimension.append("return width + ':' + height;");
+		JS_DIMENSION = new StringBuffer();
+		JS_DIMENSION.append("var width = 0;").append(LS);
+		JS_DIMENSION.append("var height = 0;").append(LS);
+		JS_DIMENSION.append("if(document.documentElement) {").append(LS);
+		JS_DIMENSION.append("  width = Math.max(width, document.documentElement.scrollWidth);").append(LS);
+		JS_DIMENSION.append("  height = Math.max(height, document.documentElement.scrollHeight);").append(LS);
+		JS_DIMENSION.append("}").append(LS);
+		JS_DIMENSION.append("if(self.innerWidth) {").append(LS);
+		JS_DIMENSION.append("  width = Math.max(width, self.innerWidth);").append(LS);
+		JS_DIMENSION.append("  height = Math.max(height, self.innerHeight);").append(LS);
+		JS_DIMENSION.append("}").append(LS);
+		JS_DIMENSION.append("if(document.body.scrollWidth) {").append(LS);
+		JS_DIMENSION.append("  width = Math.max(width, document.body.scrollWidth);").append(LS);
+		JS_DIMENSION.append("  height = Math.max(height, document.body.scrollHeight);").append(LS);
+		JS_DIMENSION.append("}").append(LS);
+		JS_DIMENSION.append("return width + ':' + height;");
 	}
 
 	public static void main1(final List<String> urls, final List<String> paths) {
@@ -91,6 +93,7 @@ public class EagleBrowser extends JPanel {
 		// UIUtils.setPreferredLookAndFeel();
 		NativeInterface.open();
 		SwingUtilities.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				for (int i = 0; i < urls.size(); i++) {
 					JFrame frame = new JFrame(title);
@@ -111,13 +114,17 @@ public class EagleBrowser extends JPanel {
 		// NativeInterface.runEventPump();
 	}
 
+	@SuppressWarnings("restriction")
 	public static void swingWorker(final JWebBrowser webBrowser, final String url, final JFrame frame, final int nums,
 			final String path) {
 
-		sun.awt.AppContext.getAppContext().put(SwingWorker.class, Executors.newFixedThreadPool(5));
+		ThreadPoolExecutor threadPool = new ThreadPoolExecutor(5, 10, 3, TimeUnit.SECONDS, new ArrayBlockingQueue<>(5),
+				new ThreadPoolExecutor.DiscardOldestPolicy());
+		sun.awt.AppContext.getAppContext().put(SwingWorker.class, threadPool);
 
 		SwingWorker<Integer, String> sw = new SwingWorker<Integer, String>() {
 
+			@Override
 			protected Integer doInBackground() throws Exception {
 				editJpg(webBrowser, url, frame, path);
 				publish(url);
@@ -145,10 +152,11 @@ public class EagleBrowser extends JPanel {
 		// 截取图片
 		webBrowser.addWebBrowserListener(new WebBrowserAdapter() {
 			// 监听加载进度
+			@Override
 			public void loadingProgressChanged(WebBrowserEvent e) {
 				// 当加载完毕时
 				if (e.getWebBrowser().getLoadingProgress() == 100) {
-					String result = (String) webBrowser.executeJavascriptWithResult(jsDimension.toString());
+					String result = (String) webBrowser.executeJavascriptWithResult(JS_DIMENSION.toString());
 					if (null != result && result.indexOf(":") > 0) {
 						int index = result.indexOf(":");
 						NativeComponent nativeComponent = webBrowser.getNativeComponent();

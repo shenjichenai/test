@@ -1,7 +1,7 @@
 package com.yida.design.decorator;
 
-import com.yida.design.decorator.abs.Decorator;
-import com.yida.design.decorator.abs.SchoolReport;
+import com.yida.design.decorator.abs.AbstractDecorator;
+import com.yida.design.decorator.abs.AbstractSchoolReport;
 
 /**
  *********************
@@ -10,9 +10,9 @@ import com.yida.design.decorator.abs.SchoolReport;
  * @created 2018年3月31日 下午2:43:49
  ***********************
  */
-public class SortDecorator extends Decorator {
+public class SortDecorator extends AbstractDecorator {
 
-	public SortDecorator(SchoolReport sr) {
+	public SortDecorator(AbstractSchoolReport sr) {
 		super(sr);
 	}
 

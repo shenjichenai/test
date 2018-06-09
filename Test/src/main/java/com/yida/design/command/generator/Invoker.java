@@ -10,10 +10,10 @@ package com.yida.design.command.generator;
  ***********************
  */
 public class Invoker {
-	private Command command;
+	private AbstractCommand command;
 
 	// 接收命令
-	public void setCommand(Command command) {
+	public void setCommand(AbstractCommand command) {
 		this.command = command;
 	}
 

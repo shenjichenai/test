@@ -9,7 +9,7 @@ package com.yida.design.builder.generator;
  * @created 2018年5月10日 下午5:09:45
  ***********************
  */
-public class ConcreteBuilder extends Builder {
+public class ConcreteBuilder extends AbstractBuilder {
 
 	private Product product = new Product();
 

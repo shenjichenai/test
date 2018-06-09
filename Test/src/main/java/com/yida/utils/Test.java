@@ -3,7 +3,10 @@ package com.yida.utils;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 /**
  *********************
@@ -29,11 +32,14 @@ public class Test {
 	 * countDownLatch测试用例
 	 */
 	public void countDownLatchTest() {
-		int N = 10;
-		CountDownLatch doneSignal = new CountDownLatch(N);
+		int n = 10;
+		CountDownLatch doneSignal = new CountDownLatch(n);
 
-		for (int i = 0; i < N; ++i) { // create and start threads
-			new Thread(new Worker(doneSignal)).start();
+		ThreadPoolExecutor threadPool = new ThreadPoolExecutor(10, 15, 3, TimeUnit.SECONDS,
+				new ArrayBlockingQueue<>(10), new ThreadPoolExecutor.DiscardPolicy());
+
+		for (int i = 0; i < n; ++i) { // create and start threads
+			threadPool.execute(new Worker(doneSignal));
 			doneSignal.countDown();
 		}
 		// // 等待所有的worker线程执行结束
@@ -48,6 +54,7 @@ class Worker implements Runnable {
 		this.doneSignal = doneSignal;
 	}
 
+	@Override
 	public void run() {
 		try {
 			List<String> urls = new ArrayList<>();
