@@ -3,6 +3,8 @@
  */
 package com.yida.utils;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -58,5 +60,25 @@ public final class FileUtils {
 
 		}
 
+	}
+
+	public static void writeFile(ByteArrayInputStream inputStream, File outFile) {
+		ByteArrayOutputStream output = new ByteArrayOutputStream();
+		byte[] b = new byte[1024];
+		int len;
+		ensureParentPath(outFile);
+		System.out.println(outFile.getAbsolutePath());
+		try {
+			while ((len = inputStream.read(b)) != -1) {
+				output.write(b, 0, len);
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static String getFileExtension(File file) {
+		String filename = file.getName();
+		return filename.substring(filename.lastIndexOf("\\."));
 	}
 }
