@@ -1,3 +1,67 @@
+/*easyUI 通用组件信息*/
+//datagrid
+var options = {
+	url : '',
+	queryParams : {},
+	loadFilter : function(data) {
+		if (data.state) {
+			return data.value;
+		} else {
+			$.messager.alert("警告", "<div style='padding-top:12px'>" + data.note
+					+ "</div>", "warning");
+			return {
+				total : 0,
+				rows : []
+			};
+		}
+	},
+	striped : true,
+	singleSelect : true,
+	fit : true,
+	fitColumns : true,
+	pagination : true,
+	pageSize : 20,
+	remoteSort : false,
+	columns : [ [ {
+		field : 'id',
+		title : '主键',
+		align : 'center',
+		hidden : true,
+		width : 80
+	}, {
+		field : 'title',
+		title : '标题',
+		align : 'center',
+		width : 80
+	}, {
+		field : 'publishTime',
+		title : '发表时间',
+		sortable : true,
+		align : 'center',
+		formatter : function(value, row, index) {
+			if (!!value) {
+				if (typeof value == "String") {
+					return value;
+				}
+				return utils.getFormatDateByLong(value, "yyyy-MM-dd hh:mm:ss");
+			}
+			return value;
+		},
+		width : 80
+	}, {
+		field : 'proximity',
+		title : '关联度',
+		align : 'center',
+		sortable : true,
+		sorter : function(a, b) {
+			return (a > b ? 1 : -1);
+		},
+		width : 80
+	} ] ],
+	onSortColumn : function(sort, order) {
+	}
+};
+
 /* easyui 前端分页 */
 function pagerFilter(data) {
 	if (typeof data.length == 'number' && typeof data.splice == 'function') { // is
@@ -97,7 +161,8 @@ function createElementByData(obj) {
 			}
 			content = getContentByForKey($template, forKey, data);
 		} else {
-			html = $el.html();
+			// js配置优先
+			html = $template == null ? $el.html() : $template;
 			content = matchAndReplace(html, data);
 		}
 		$el.html(content);
@@ -110,30 +175,64 @@ function createElementByData(obj) {
 		}
 	}
 	return content;
-}
-/**
- * 遍历获取数据
- */
-function getContentByForKey(html, forKey, data) {
-	var content = '';
-	for ( var i in data) {
-		if (forKey == i) {
-			var array = data[i];
-			for (var j = 0; j < array.length; j++) {
-				var item = matchAndReplace(html, array[j]);
-				content += item;
+
+	/**
+	 * 遍历获取数据
+	 */
+	function getContentByForKey(html, forKey, data) {
+		var content = '';
+		for ( var i in data) {
+			if (forKey == i) {
+				var array = data[i];
+				for (var j = 0; j < array.length; j++) {
+					var item = matchAndReplace(html, array[j]);
+					content += item;
+				}
 			}
 		}
+		return content;
 	}
-	return content;
 }
+
 /**
  * 匹配替换数据
  */
 function matchAndReplace(html, data) {
-	var content = html.replace(/\{([\s\S]*?)\}/g, function(rep) {
-		var name = rep.substring(1, rep.length - 1);
+	var content = html.replace(/\$\{([\s\S]*?)\}/g, function(rep) {
+		var name = rep.substring(2, rep.length - 1);
+
+		// 判断是否存在过滤器,用以格式化数据，待实现
+
+		if (name.indexOf("|") > 0) {
+			var splitArrar = name.split("|");
+			name = splitArrar[0];
+			var filter = eval(splitArrar[1]);
+			filter.call(this, name);
+		}
+
+		// 逐级取值
+		if (name.indexOf(".") > 0) {
+			var names = name.split(".");
+			return stepByStep(names, data);
+		}
+
 		return data[name] == null ? '' : data[name];
 	});
 	return content;
+
+	// 多层数据取值
+	function stepByStep(names, data) {
+		var dd = {};
+		$.each(data, function(i, d) {
+			dd[i] = d;
+		});
+		$.each(names, function(i, n) {
+			if (!dd[n]) {
+				dd = '';
+				return false;
+			}
+			dd = dd[n];
+		})
+		return dd;
+	}
 }
