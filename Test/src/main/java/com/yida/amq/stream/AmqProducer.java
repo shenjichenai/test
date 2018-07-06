@@ -18,7 +18,7 @@ import org.apache.activemq.ActiveMQConnectionFactory;
 
 /**
  *********************
- * 主题发送省生产者
+ * 主题发送生产者
  * 
  * @author yangke
  * @version 1.0
