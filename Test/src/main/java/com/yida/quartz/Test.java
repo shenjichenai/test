@@ -35,14 +35,12 @@ public class Test {
 					// 的name和group
 					.build();
 
-			long time = System.currentTimeMillis() + 3 * 1000L; // 3秒后启动任务
-			Date statTime = new Date(time);
 
 			Trigger t = TriggerBuilder.newTrigger().withDescription("")
 					// .withIdentity("hellowTrigger", "hellowTriggerGroup")
 					// .withSchedule(SimpleScheduleBuilder.simpleSchedule())
-					.startAt(statTime) // 默认当前时间启动
-					.withSchedule(CronScheduleBuilder.cronSchedule("0 0 17 * * ?")) // 每天17点触发
+					.withSchedule(CronScheduleBuilder.cronSchedule("* 0/10 * * * ?")) // 每天17点触发
+					//.startNow() // 默认当前时间启动
 					.build();
 
 			scheduler.scheduleJob(jb, t);
