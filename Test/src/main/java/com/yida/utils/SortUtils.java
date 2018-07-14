@@ -198,12 +198,12 @@ public class SortUtils {
 	private static int partition(int[] array, int left, int right) {
 		int first = array[left];
 		while (left < right) {
-			while (left < right && array[right] > first) {
+			while (left < right && array[right] >= first) {
 				right--;
 			}
 			swap(array, left, right);
 
-			while (left < right && array[left] < first) {
+			while (left < right && array[left] <= first) {
 				left++;
 			}
 			swap(array, left, right);
