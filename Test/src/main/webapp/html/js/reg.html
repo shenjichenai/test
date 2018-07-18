@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+	var str = "sdfjjskd{content}说了看{content1}得见哦";
+	var reg = /{content(\d*)?}/ig;
+	var a = str.match(reg);
+	/*1、match
+	  	语法：string.match(reg)；
+	  	返回值：reg有g，数组。没有g,首个匹配。
+	  2、exec()
+	  	语法：reg.exec(string)
+	  	返回值：reg，没有g，返回首个。有g使用循环可以取出全部,每次只取出一个。
+	  3、string.replace(reg,function(matchString){});
+		没有g，替换一个；有g替换全部。
+	 */
+</script>
+
+</html>
