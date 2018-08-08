@@ -1,14 +1,7 @@
 package com.yida.utils;
 
-import java.io.File;
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import java.util.Random;
-
-import com.google.gson.Gson;
 
 /**
  *********************
@@ -19,19 +12,8 @@ import com.google.gson.Gson;
  */
 public final class StringUtils {
 	public static void main(String[] args) {
-		/*
-		 * String randomJianHan = getRandomJianHan(5);
-		 * System.err.println(randomJianHan);
-		 */
-		List<Map<String, String>> list = new ArrayList<Map<String, String>>();
-		for (int i = 0; i < 10; i++) {
-			String randomJianHan = getRandomJianHan(100);
-			Map<String, String> map = new HashMap<String, String>();
-			map.put("text", randomJianHan);
-			list.add(map);
-		}
-		String json = new Gson().toJson(list);
-		FileUtils.writeFile(json, new File("src/main/resources/aaa.json"));
+		String baseRandString = getBaseRandString(100);
+		System.out.println(baseRandString);
 	}
 
 	public static void cycleCount(int k) {
