@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+	$.ajax({
+		url : '',
+		data : {},
+		dataType : 'json',
+		type : 'get',
+		success : function(data) {
+			if (data.state) {
+			} else {
+				$.messager.alert("警告", "<div style='padding-top:12px'>"
+						+ data.note + "</div>", "warning");
+			}
+		}
+	});
+	$.ajaxSetup({
+		async:true;
+	})
+	$.get('', {
+			}, function(data) {
+				if (data.state) {
+				} else {
+					$.messager.alert("警告", "<div style='padding-top:12px'>"
+							+ data.note + "</div>", "warning");
+				}
+			}, 'json');
+</script>
+</head>
+<body>
+
+</body>
+</html>
