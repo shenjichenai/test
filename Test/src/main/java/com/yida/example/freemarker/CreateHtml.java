@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
-import java.io.StringWriter;
 import java.io.Writer;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -72,14 +71,12 @@ public class CreateHtml {
 		Template temp = cfg.getTemplate("template.html");
 
 		/* Merge data-model with template */
-		// new
-		// File("D:\\WorkspaceForEclispe\\commons\\test\\src\\main\\resources\\static\\success.html")
-		// Writer writer = new OutputStreamWriter(new
-		// FileOutputStream("success.html"), "UTF-8");
+		File file = new File("E:\\yk\\temp\\file\\success_1.html");
+		Writer writer = new OutputStreamWriter(new FileOutputStream(file), "UTF-8");
 		// Writer writer = new OutputStreamWriter(System.out);
-		StringWriter writer = new StringWriter();
+		// StringWriter writer = new StringWriter();
 		temp.process(paramMap, writer);
-		System.out.println(writer.toString());
+		// System.out.println(writer.toString());
 		// Note: Depending on what `out` is, you may need to call `out.close()`.
 		// This is usually the case for file output, but not for servlet output.
 	}

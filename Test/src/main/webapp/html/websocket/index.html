@@ -10,6 +10,8 @@
 		<input type="button" value="清空" onclick="reset()" /> <input
 			type="button" value="发送" onclick="send()">
 	</div>
+	<div id="aa"></div>
+	<div id="bb"></div>
 	<script type="text/javascript">
 		var socket = new WebSocket('ws://127.0.0.1:8080/Test/ws');
 
@@ -17,16 +19,17 @@
 		socket.onopen = function(event) {
 
 			//向服务器发送数据
-			//socket.send('哈哈哈哈'); 
+			socket.send('哈哈哈哈');
 
 			//接收数据事件
 			socket.onmessage = function(event) {
-				body.innerHTML += "<br/>对方：" + event.data;
+				document.getElementById("aa").innerHTML += "<br/>对方："
+						+ event.data;
 			};
 
 			// socket关闭事件
 			socket.onclose = function(event) {
-				body.innerHTML += "<br/>系统：已和服务器断开连接！！！";
+				document.getElementById("bb").innerHTML += "<br/>系统：已和服务器断开连接！！！";
 			};
 
 			//关闭socket

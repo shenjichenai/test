@@ -1,11 +1,8 @@
 package com.yida;
 
-import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.UUID;
 
 import org.joda.time.LocalDate;
@@ -58,12 +55,12 @@ public class TestPojo {
 	}
 
 	@Test
-	public void dateTest(){
+	public void dateTest() {
 		LocalDate now = LocalDate.now();
 		Property dayOfMonth = now.dayOfMonth();
 		System.out.println(dayOfMonth.get());
 	}
-	
+
 	@Test
 	public void asListTest() {
 		String[] ss = { "aa", "bb" };
