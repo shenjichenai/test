@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<table id="dg"></table>
+	<script>
+		$('#dg').datagrid({
+			singleSelect : true,
+			collapsible : true,
+			rownumbers : true,
+			singleSelect : true,
+			fit : true,
+			fitColumns : true,
+			border : false,
+			pagination : true,
+			pageSize : 20,
+			pageList : [ 20, 25, 30, 40 ],
+			columns : [ [ <#list fields as fieldMap>
+			 <#if fieldMap_has_next>
+				 <#if (fieldMap.idField?string('true','false')=='true')>
+					{field:'${fieldMap.name!}',title:'${fieldMap.comment!}',width:80,align:'center',hidden:true},
+				<#else>
+					{field:'${fieldMap.name!}',title:'${fieldMap.comment!}',width:80,align:'center'},
+				</#if>
+			 <#else>
+			 	{field:'${fieldMap.name!}',title:'${fieldMap.comment!}',width:80,align:'center'}
+			 </#if>
+			</#list> ] ]
+		});
+	</script>
+</body>
+</html>

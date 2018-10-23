@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<table class="easyui-datagrid"
+		data-options="singleSelect:true,
+					  collapsible:true,
+					  rownumbers : true,
+					  singleSelect : true,
+					  fit : true,
+			          fitColumns : true,
+			          border : false,
+					  pagination : true,
+					  pageSize : 20,
+			          pageList : [ 20, 25, 30, 40 ]">
+		<thead>
+			<tr>
+				<#list fields as fieldMap> <#if
+				(fieldMap.idField?string('true','false')=='true')>
+				<th
+					data-options="field:'${fieldMap.name}',width:80,align:'center',hidden:true">${fieldMap.comment}</th>
+				<#else>
+				<th data-options="field:'${fieldMap.name}',width:80,align:'center'">${fieldMap.comment}</th>
+				</#if> </#list>
+			</tr>
+		</thead>
+	</table>
+</body>
+</html>

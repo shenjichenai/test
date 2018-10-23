@@ -24,7 +24,7 @@
 
 2、CronTrigger配置格式:
 
-本人参见：https://blog.csdn.net/lnara/article/details/8636656
+参见：https://blog.csdn.net/lnara/article/details/8636656
 
 格式: [秒] [分] [小时] [日] [月] [周] [年]
 
