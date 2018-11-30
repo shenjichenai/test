@@ -5,8 +5,6 @@ import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CyclicBarrier;
 
-import org.junit.Test;
-
 import com.google.gson.Gson;
 
 /**
@@ -47,7 +45,6 @@ public class CyclicBarrierTest {
 
 	}
 
-	@Test
 	public void main() {
 		// CyclicBarrier cyclicBarrier = new CyclicBarrier(4);
 		CyclicBarrier cyclicBarrier = new CyclicBarrier(4, new Runnable() {

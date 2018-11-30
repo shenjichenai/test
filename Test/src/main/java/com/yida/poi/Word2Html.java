@@ -50,7 +50,7 @@ public class Word2Html {
 		case ".doc":
 			doc2003ToHtml(sourcePath, targetPath, imagePathStr);
 			break;
-		case "docx":
+		case ".docx":
 			doc2007ToHtml(sourcePath, targetPath, imagePathStr);
 			break;
 		default:

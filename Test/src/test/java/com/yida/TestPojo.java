@@ -7,7 +7,6 @@ import java.util.UUID;
 
 import org.joda.time.LocalDate;
 import org.joda.time.LocalDate.Property;
-import org.junit.Test;
 
 import com.google.common.base.Objects;
 
@@ -54,14 +53,12 @@ public class TestPojo {
 		return Objects.hashCode(name, age);
 	}
 
-	@Test
 	public void dateTest() {
 		LocalDate now = LocalDate.now();
 		Property dayOfMonth = now.dayOfMonth();
 		System.out.println(dayOfMonth.get());
 	}
 
-	@Test
 	public void asListTest() {
 		String[] ss = { "aa", "bb" };
 		List<String> asList = Arrays.asList(ss);
@@ -72,7 +69,6 @@ public class TestPojo {
 	}
 
 	@SuppressWarnings({ "unused" })
-	@Test
 	public void subListTest() {
 		List<String> arrayList = new ArrayList<>();
 		for (int i = 0; i < 6; i++) {
@@ -84,7 +80,6 @@ public class TestPojo {
 		List<String> subList = arrayList.subList(2, 5);
 	}
 
-	@Test
 	public void testHashcodeAndEquals() {
 		// 有问题
 		TestPojo testPojo = new TestPojo();

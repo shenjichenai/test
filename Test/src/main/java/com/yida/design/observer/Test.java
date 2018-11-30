@@ -15,7 +15,6 @@ public class Test {
 		myObservable.hanFeiZiDoSomething();
 	}
 
-	@org.junit.Test
 	public void test() {
 		String a = "asssdfd";
 		String[] split = a.split(" ");

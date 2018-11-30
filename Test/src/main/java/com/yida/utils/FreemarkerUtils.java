@@ -40,8 +40,6 @@ public class FreemarkerUtils {
 			Writer writer = new OutputStreamWriter(new FileOutputStream(new File(targetPath)), "UTF-8");
 
 			template.process(paramMap, writer);
-			String s = "bb";
-			new String(s.getBytes(), "UTF-8");
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (TemplateException e) {

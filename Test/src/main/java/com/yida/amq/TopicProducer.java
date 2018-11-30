@@ -76,10 +76,10 @@ public class TopicProducer {
 			 * 4.创建会话<br>
 			 * param1:是否支持事务，若为true，则会忽略第二个参数，默认为SESSION_TRANSACTED<br>
 			 * param2:确认消息模式，若第一个参数为false时，该参数有以下几种状态<br>
-			 * -Session.AUTO_ACKNOWLEDGE：自动确认。客户端发送和接收消息不需要做额外的工作，即使接收端发生异常，
-			 * 也会被当作正常发送成功 <br>
-			 * -Session.CLIENT_ACKNOWLEDGE：客户端确认。客户端接收到消息后，必须调用message.
-			 * acknowledge() 方法给予收到反馈，JMS服务器才会把该消息当做发送成功，并删除<br>
+			 * -Session.AUTO_ACKNOWLEDGE：自动确认。客户端发送和接收消息不需要做额外的工作，即使接收端发生异常， 也会被当作正常发送成功
+			 * <br>
+			 * -Session.CLIENT_ACKNOWLEDGE：客户端确认。客户端接收到消息后，必须调用message. acknowledge()
+			 * 方法给予收到反馈，JMS服务器才会把该消息当做发送成功，并删除<br>
 			 * -Session.DUPS_OK_ACKNOWLEDGE：副本确认。一旦接收端应用程序的方法调用从处理消息处返回，
 			 * 会话对象就会确认消息的接收，而且允许重复确认。
 			 */
@@ -117,8 +117,8 @@ public class TopicProducer {
 			 * 8. 发送
 			 */
 			messageProducer.send(message);
-
 			System.out.println("消息发送完成！");
+
 			/**
 			 * 如果有事务操作也可以提交事务
 			 */

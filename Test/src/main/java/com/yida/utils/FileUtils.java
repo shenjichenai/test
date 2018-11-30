@@ -67,7 +67,6 @@ public final class FileUtils {
 		byte[] b = new byte[1024];
 		int len;
 		ensureParentPath(outFile);
-		System.out.println(outFile.getAbsolutePath());
 		try {
 			while ((len = inputStream.read(b)) != -1) {
 				output.write(b, 0, len);
@@ -79,6 +78,6 @@ public final class FileUtils {
 
 	public static String getFileExtension(File file) {
 		String filename = file.getName();
-		return filename.substring(filename.lastIndexOf("\\."));
+		return filename.substring(filename.lastIndexOf("."));
 	}
 }

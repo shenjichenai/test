@@ -2,9 +2,12 @@ package com.yida.listener;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
+import javax.servlet.annotation.WebListener;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.yida.websocket.tomcat.WorkFlow;
 
 /**
  *********************
@@ -13,6 +16,7 @@ import org.slf4j.LoggerFactory;
  * @created 2018年5月29日18:07:36
  ***********************
  */
+@WebListener
 public class StartListener implements ServletContextListener {
 	private static final Logger LOG = LoggerFactory.getLogger(StartListener.class);
 
@@ -20,6 +24,9 @@ public class StartListener implements ServletContextListener {
 	public void contextInitialized(ServletContextEvent sce) {
 		LOG.info("初始化配置信息。。。");
 		loadConfig(sce);
+
+		WorkFlow workFlow = new WorkFlow();
+		new Thread(workFlow).start();
 
 	}
 
